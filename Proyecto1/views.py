@@ -1,13 +1,15 @@
 from django.http import HttpResponse
 import datetime
+from django.template import Template, Context
 
 
 def saludo(request):  # primera vista
-    documento = """<html>
-        <body>
-            <h1>Hola, esta es mi primera página con django</h1>
-        </body>
-    </html>"""
+    doc_externo = open(
+        "C:/Users/ruben/Documents/estudios/django/Proyecto1/Proyecto1/plantillas/index.html")
+    plantilla = Template(doc_externo.read())
+    doc_externo.close()
+    contexto = Context()
+    documento = plantilla.render(contexto)
     return HttpResponse(documento)
 
 
@@ -15,7 +17,7 @@ def despedida(request):  # segunda vista
     return HttpResponse("¡Hasta luego mundo!")
 
 
-def dameFecha(request):
+def dame_Fecha(request):
     fecha_actual = datetime.datetime.now()
 
     documento = """<html>
@@ -27,7 +29,7 @@ def dameFecha(request):
     return HttpResponse(documento)
 
 
-def calcularEdad(request, edad, year):
+def calcular_Edad(request, edad, year):
     periodo = year - 2021
     edadFutura = edad + periodo
 
