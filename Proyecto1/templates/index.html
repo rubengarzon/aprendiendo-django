@@ -10,14 +10,25 @@
   <h1 style="color: red">
       Hola alumnos estamos viendo nuestra primera plantilla
   </h1>
-    <p>El nombre del profesor es: {{nombre.upper}} {{apellido.upper}}</p>
+  {# NO TEMAS DISEÑADOR! IGNORA ESTA PARTE #}
+  {% comment "" %}
+    comentario - comentario
+  {% endcomment %}
+
+  {% if nombre == 'Profesor Juan' %}
+    <p>El curso lo imparte el profesor titular</p>
+    {% else %}
+    <p>El curso lo imparte el profesor suplente</p>
+  {% endif %}
+
+    <p>El nombre del profesor es: {{nombre|lower}} {{apellido.upper}}</p>
     <p>Estamos viendo el temas de las plantillas a d&iacute;a: {{momento_actual.day}} / {{momento_actual.month}} / {{momento_actual.year}}</p>
     <p><strong>Temas del curso:</strong></p>
     <p>
       <ul>
         {% if temas%}
           {% for tema in temas %}
-            <li>{{tema}}</li>
+            <li>{{tema|first|lower}}</li>
           {% endfor %}
         {% else %}
           <p>No hay elementos que mostrar</p>
