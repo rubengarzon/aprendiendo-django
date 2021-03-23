@@ -11,6 +11,7 @@ class Persona(object):
 
 def saludo(request):  # primera vista
     p1 = Persona("Profesor Juan", "Díaz")
+    temasDelCurso = []
     """ nombre = "Juan" """
     """ apellido = "García" """
     ahora = datetime.datetime.now()
@@ -19,7 +20,7 @@ def saludo(request):  # primera vista
     plantilla = Template(doc_externo.read())
     doc_externo.close()
     contexto = Context(
-        {"nombre": p1.nombre, "apellido": p1.apellido, "momento_actual": ahora})
+        {"nombre": p1.nombre, "apellido": p1.apellido, "momento_actual": ahora, "temas": temasDelCurso})
     documento = plantilla.render(contexto)
     return HttpResponse(documento)
 
